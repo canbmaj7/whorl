@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest an improvement or a new integration
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed approach
+      description: Check `docs/PLAN.md` non-goals first (no drivers, no firmware flashing, no telemetry).
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

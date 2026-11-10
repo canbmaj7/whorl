@@ -1,0 +1,45 @@
+# Whorl sensor catalog
+#
+# One entry per USB/SPI id. Contributions welcome: see CONTRIBUTING.md.
+#
+# Schema (v0):
+#   id:            vendor:product, lowercase hex (USB) e.g. "27c6:5125"
+#   name:          human readable
+#   status:        supported | community | unsupported
+#                    supported   - upstream libfprint handles it
+#                    community   - a working out-of-tree driver exists
+#                    unsupported - no known working driver
+#   driver:        driver name (community only)
+#   sources:       list of {label, url} (merge request, repo, packaging)
+#   risk:          flags the installer must show before acting
+#     writes_key:                installing/using it writes a key or data to the sensor
+#     replaces_system_package:   it replaces a distro package (e.g. libfprint)
+#     firmware_flash:            must never be true; entries that need it are rejected
+#   tested_on:     list of {machine, distro, date, result, notes}
+#   notes:         free text, known problems
+#   last_verified: YYYY-MM-DD
+
+- id: "27c6:5125"
+  name: "Goodix Fingerprint Device (ChicagoHS, TLS-PSK)"
+  status: community
+  driver: goodix5125
+  sources:
+    - label: "libfprint merge request !669"
+      url: "https://gitlab.freedesktop.org/libfprint/libfprint/-/merge_requests/669"
+    - label: "RuVl/FingerprintDriver_27c6_5125 (Arch PKGBUILD, tools)"
+      url: "https://github.com/RuVl/FingerprintDriver_27c6_5125"
+  risk:
+    writes_key: true
+    replaces_system_package: true
+    firmware_flash: false
+  tested_on:
+    - machine: "HONOR MagicBook 14 (NMH-WCX9)"
+      distro: "CachyOS (Arch), KDE Plasma"
+      date: "2026-11-10"
+      result: works
+      notes: "enroll, verify, sudo, polkit, KDE lock screen OK; see docs/field-notes-27c6-5125.md"
+  notes: >
+    The sensor may already hold an unknown pairing key. Using the driver then
+    requires one irreversible key write. About half of quick single touches
+    miss. Upstream merge request is not merged yet.
+  last_verified: "2026-11-10"

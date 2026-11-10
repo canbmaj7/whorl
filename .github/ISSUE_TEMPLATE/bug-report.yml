@@ -1,0 +1,30 @@
+name: Bug report
+description: Something in Whorl does not work as documented
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, what you got.
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Distribution, desktop, Whorl version/commit, sensor id (`lsusb`).
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Relevant output. Remove any secrets; never paste fingerprint data or key files.
+      render: text
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Did it change your system?
+      options:
+        - label: It modified PAM files or installed/replaced a package unexpectedly
