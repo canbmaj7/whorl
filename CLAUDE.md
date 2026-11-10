@@ -18,6 +18,7 @@ The maintainer, Can, writes Turkish: reply in Turkish in chat, but keep all repo
 - Stack: Python + PySide6/QML for the GUI, one shared core library, a thin `whorl` CLI on top. fprintd is driven over its D-Bus API (`net.reactivated.Fprint`), never by shelling out to `fprintd-*` tools in library code.
 - Privileged work (PAM files, package install, sensor key writes) goes through a small separate helper run via polkit/`pkexec`; the GUI process itself never runs as root.
 - First target: Arch/CachyOS + KDE Plasma + Goodix `27c6:5125`. Other sensors/distros come through the catalog later. Packaging: AUR first (Flatpak is a poor fit because it must edit `/etc/pam.d`).
+- Names (checked 2026-11-10): AUR package `whorl` is free; GitHub repo is `canbmaj7/whorl`; on PyPI the name `whorl` is taken by an empty placeholder (`0.0.0.dev20230915`), so publish the distribution as `whorl-cli` (free) or `whorl-fingerprint` and keep the import name `whorl`; npm `whorl` is an unrelated package (not needed). No Linux fingerprint tool or trademark called Whorl was found; official trademark registries (TÜRKPATENT, EUIPO, USPTO) were not searched, do that before any commercial use.
 - Browser story is honest and limited: Chrome/Firefox on Linux do not use fprintd for password fields. Supported route = Bitwarden desktop "unlock with system authentication" (polkit) + browser extension. Never promise per-site fingerprint prompts.
 
 ## Safety invariants (never relax without the maintainer's explicit say-so)
